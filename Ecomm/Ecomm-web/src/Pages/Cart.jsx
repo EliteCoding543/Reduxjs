@@ -1,5 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {useNavigate} from "react-router-dom"
+
 import {
   increaseQuantity,
   decreaseQuantity,
@@ -9,6 +11,8 @@ import {
 
 const Cart = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate()
 
   const cart = useSelector((state) => state.card);
 
@@ -29,6 +33,8 @@ const Cart = () => {
         <p className="text-gray-500 mt-2">
           Add some products to your cart.
         </p>
+
+        <button onClick={() => navigate("/")} className="bg-blue-600 px-6 py-3 font-bold mt-5 rounded-xl text-white">Go To Home</button>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UsersCard from "./UsersCard";
 
+
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
 

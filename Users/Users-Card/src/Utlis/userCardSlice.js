@@ -15,23 +15,53 @@ const userSlice = createSlice({
       state.users = action.payload;
     },
 
-    // Friend List me add karna
+    // Add Friend
     addFriend: (state, action) => {
-      state.friend.push(action.payload);
+      const user = action.payload;
 
-      // Users list se remove
+      // Already Blocked
+      const isBlocked = state.block.some(
+        (item) => item.id === user.id
+      );
+
+      if (isBlocked) return;
+
+      // Already Friend
+      const isFriend = state.friend.some(
+        (item) => item.id === user.id
+      );
+
+      if (isFriend) return;
+
+      state.friend.push(user);
+
       state.users = state.users.filter(
-        (user) => user.id !== action.payload.id
+        (item) => item.id !== user.id
       );
     },
 
-    // Block List me add karna
+    // Block User
     blockFriend: (state, action) => {
-      state.block.push(action.payload);
+      const user = action.payload;
 
-      // Users list se remove
+      // Already Friend
+      const isFriend = state.friend.some(
+        (item) => item.id === user.id
+      );
+
+      if (isFriend) return;
+
+      // Already Blocked
+      const isBlocked = state.block.some(
+        (item) => item.id === user.id
+      );
+
+      if (isBlocked) return;
+
+      state.block.push(user);
+
       state.users = state.users.filter(
-        (user) => user.id !== action.payload.id
+        (item) => item.id !== user.id
       );
     },
   },

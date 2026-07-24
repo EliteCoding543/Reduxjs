@@ -2,12 +2,17 @@ import React from "react";
 import { MdEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaBuilding } from "react-icons/fa";
+import {useDispatch, useSelector} from 'react-redux'
+import {addFriend, blockFriend} from '../Utlis/userCardSlice'
+import toast from 'react-hot-toast'
 
 const UsersCard = ({ user }) => {
+  const dis = useDispatch()
+  const data = useSelector((state) => state.card)
   return (
-    <div className="bg-white shadow-lg rounded-xl p-5 border gap-3">
-          <div className="flex gap-2">
-            <div className="flex justify-center items-center">
+    <div className="bg-white shadow-lg rounded-xl p-5 border gap-6">
+          <div className="flex gap-5">
+            <div className="flex justify-center items-center bg-white rounded-xl shadow-xs shadow-blue-400">
               <img src={user.image} alt="" />
             </div>
 
@@ -46,13 +51,34 @@ const UsersCard = ({ user }) => {
                      <h6 className="font-bold text-gray-800">AccioJob</h6>
                    </div>
                 </div>
+
+            <div className="flex justify-center items-center gap-6 mt-6">
+
+                <button
+                  onClick={() => {
+                    dis(addFriend(user));
+                    toast.success(`${user.firstName} added as Friend`);
+                  }}
+                  className="bg-violet-100 text-violet-500 font-bold px-6 py-2 rounded-xl hover:bg-violet-200 transition duration-300"
+                >
+                  Add Friend
+                </button>
+
+                <button
+                  onClick={() => {
+                    dis(blockFriend(user));
+                    toast.error(`${user.firstName} blocked`);
+                  }}
+                  className="bg-red-200 text-red-500 font-bold px-6 py-2 rounded-xl hover:bg-red-300 hover:text-red-600"
+                >
+                  Block User
+                </button>
+
+          </div>
             </div>
           </div>
 
-          <div className="flex justify-center items-center gap-6 mt-6">
-            <button className="bg-violet-100 text-violet-500 font-bold px-6 py-2 rounded-xl hover:bg-violet-200 transition duration-300">Add Friend</button>
-            <button className="bg-red-200 text-red-500 font-bold px-6 py-2 rounded-xl hover:bg-red-300 hover:text-red-600">Block User</button>
-          </div>
+
     </div>
   );
 };

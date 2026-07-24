@@ -16,7 +16,7 @@ const UsersCard = ({ user }) => {
 
       {/* Image */}
       <div className="flex justify-center xl:w-1/3">
-        <div className="bg-white rounded-xl shadow-md shadow-blue-300 p-4">
+        <div className="bg-white rounded-xl shadow-md shadow-blue-300 p-4 flex justify-center items-center">
           <img
             src={user.image}
             alt={user.firstName}

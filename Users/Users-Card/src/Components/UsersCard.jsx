@@ -10,77 +10,99 @@ const UsersCard = ({ user }) => {
   const dis = useDispatch()
   const data = useSelector((state) => state.card)
   return (
-    <div className="bg-white shadow-lg rounded-xl p-5 border gap-6">
-          <div className="flex gap-5">
-            <div className="flex justify-center items-center bg-white rounded-xl shadow-xs shadow-blue-400">
-              <img src={user.image} alt="" />
-            </div>
+  <div className="bg-white shadow-lg rounded-2xl border border-blue-300 p-6 hover:shadow-2xl transition-all">
 
-            <div className="flex flex-col gap-3">
-                <h1 className="text-2xl font-bold text-center">{`${user.firstName} ${user.lastName}`}</h1>
+    <div className="flex flex-col xl:flex-row gap-8">
 
-                <div className="flex gap-4 justify-center items-center">
-                   <div className="bg-blue-100 h-10 w-10 flex justify-center items-center rounded-xl">
-                      <MdEmail className="text-2xl text-blue-400" />
-                   </div>
+      {/* Image */}
+      <div className="flex justify-center xl:w-1/3">
+        <div className="bg-white rounded-xl shadow-md shadow-blue-300 p-4">
+          <img
+            src={user.image}
+            alt={user.firstName}
+            className="w-36 h-36 object-cover rounded-full"
+          />
+        </div>
+      </div>
 
-                   <div className="gap-5">
-                     <p className="text-gray-500">Email</p>
-                     <h6 className="font-bold text-gray-800">{user.email}</h6>
-                   </div>
-                </div>
+      {/* Details */}
+      <div className="flex-1 flex flex-col gap-5">
 
-                <div className="flex gap-4">
-                   <div className="bg-green-50 h-10 w-10 flex justify-center items-center rounded-xl">
-                      <FaPhoneAlt className="text-2xl text-green-400" />
-                   </div>
+        <h1 className="text-3xl font-bold text-center xl:text-left">
+          {user.firstName} {user.lastName}
+        </h1>
 
-                   <div className="gap-5">
-                     <p className="text-gray-500">Phone</p>
-                     <h6 className="font-bold text-gray-800">{user.phone}</h6>
-                   </div>
-                </div>
-
-                <div className="flex gap-4">
-                   <div className="bg-yellow-50 h-10 w-10 flex justify-center items-center rounded-xl">
-                      <FaBuilding className="text-2xl text-yellow-600" />
-                   </div>
-
-                   <div className="gap-5">
-                     <p className="text-gray-500">Company</p>
-                     <h6 className="font-bold text-gray-800">AccioJob</h6>
-                   </div>
-                </div>
-
-            <div className="flex justify-center items-center gap-6 mt-6">
-
-                <button
-                  onClick={() => {
-                    dis(addFriend(user));
-                    toast.success(`${user.firstName} added as Friend`);
-                  }}
-                  className="bg-violet-100 text-violet-500 font-bold px-6 py-2 rounded-xl hover:bg-violet-200 transition duration-300"
-                >
-                  Add Friend
-                </button>
-
-                <button
-                  onClick={() => {
-                    dis(blockFriend(user));
-                    toast.error(`${user.firstName} blocked`);
-                  }}
-                  className="bg-red-200 text-red-500 font-bold px-6 py-2 rounded-xl hover:bg-red-300 hover:text-red-600"
-                >
-                  Block User
-                </button>
-
-          </div>
-            </div>
+        {/* Email */}
+        <div className="flex items-center gap-4">
+          <div className="bg-blue-100 h-12 w-12 rounded-xl flex justify-center items-center shrink-0">
+            <MdEmail className="text-2xl text-blue-500" />
           </div>
 
+          <div className="min-w-0">
+            <p className="text-gray-500">Email</p>
+            <p className="font-semibold break-all">
+              {user.email}
+            </p>
+          </div>
+        </div>
 
+        {/* Phone */}
+        <div className="flex items-center gap-4">
+          <div className="bg-green-100 h-12 w-12 rounded-xl flex justify-center items-center shrink-0">
+            <FaPhoneAlt className="text-xl text-green-600" />
+          </div>
+
+          <div>
+            <p className="text-gray-500">Phone</p>
+            <p className="font-semibold">
+              {user.phone}
+            </p>
+          </div>
+        </div>
+
+        {/* Company */}
+        <div className="flex items-center gap-4">
+          <div className="bg-yellow-100 h-12 w-12 rounded-xl flex justify-center items-center shrink-0">
+            <FaBuilding className="text-xl text-yellow-600" />
+          </div>
+
+          <div>
+            <p className="text-gray-500">Company</p>
+            <p className="font-semibold">
+              {user.company.name}
+            </p>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-4">
+
+          <button
+            onClick={() => {
+              dis(addFriend(user));
+              toast.success(`${user.firstName} added as Friend`);
+            }}
+            className="flex-1 bg-violet-500 hover:bg-violet-600 text-white font-semibold py-3 rounded-xl"
+          >
+            Add Friend
+          </button>
+
+          <button
+            onClick={() => {
+              dis(blockFriend(user));
+              toast.error(`${user.firstName} blocked`);
+            }}
+            className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-xl"
+          >
+            Block User
+          </button>
+
+        </div>
+
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default UsersCard;

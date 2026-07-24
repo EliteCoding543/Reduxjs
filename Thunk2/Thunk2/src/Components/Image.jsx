@@ -5,9 +5,9 @@ const Image = () => {
   const data = useSelector((state) => state.card);
 
   return (
-    <div>
+    <div className="grid gap-2 grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
         {data.data.map((item) => (
-            <img key={item.id} src={item.images[0]}  />
+            <img className="w-60 h-60 border" key={item.id} src={item.images[0]}  />
         ))
         }
     </div>

@@ -29,7 +29,7 @@ const UserCard = ({ user }) => {
 
 
         {/* Image */}
-        <div className="flex justify-center xl:w-1/3">
+        <div className="flex justify-center xl:w-1/3 items-center">
 
           <div className="bg-white rounded-xl shadow-md shadow-blue-300 p-4 flex justify-center items-center">
 
@@ -141,7 +141,7 @@ const UserCard = ({ user }) => {
                     toast.error(`${user.firstName} removed`);
                   }}
 
-                  className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-xl"
+                  className="flex-1 bg-red-500 hover:bg-red-600 text-white font-semibold py-3 rounded-xl cursor-pointer"
                 >
                   Remove Friend
                 </button>
@@ -155,7 +155,7 @@ const UserCard = ({ user }) => {
                     toast.success(`${user.firstName} added as Friend`);
                   }}
 
-                  className="flex-1 bg-violet-500 hover:bg-violet-600 text-white font-semibold py-3 rounded-xl"
+                  className="flex-1 bg-violet-500 hover:bg-violet-600 text-white font-semibold py-3 rounded-xl cursor-pointer"
                 >
                   Add Friend
                 </button>
